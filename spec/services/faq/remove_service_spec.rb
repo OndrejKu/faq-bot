@@ -11,14 +11,14 @@ describe FaqModule::RemoveService do
       @removeService = FaqModule::RemoveService.new({"id" => faq.id})
       response = @removeService.call()
 
-      expect(response).to match("Deletado com sucesso")
+      expect(response).to match("Successfully deleted")
     end
 
     it "With invalid ID, receive error message" do
       @removeService = FaqModule::RemoveService.new({"id" => rand(1..9999)})
       response = @removeService.call()
 
-      expect(response).to match("Questão inválida, verifique o Id")
+      expect(response).to match("Invalid question, please verify the ID")
     end
   end
 end
