@@ -8,7 +8,7 @@ describe InterpretService do
   describe '#list' do
     it "With zero faqs, return don't find message" do
       response = InterpretService.call('list', {})
-      expect(response).to match("Nada encontrado")
+      expect(response).to match("Nothing found")
     end
 
     it "With two faqs, find questions and answer in response" do
@@ -28,7 +28,7 @@ describe InterpretService do
   describe '#search' do
     it "With empty query, return don't find message" do
       response = InterpretService.call('search', {"query": ''})
-      expect(response).to match("Nada encontrado")
+      expect(response).to match("Nothing found")
     end
 
     it "With valid query, find question and answer in response" do
@@ -44,7 +44,7 @@ describe InterpretService do
   describe '#search by category' do
     it "With invalid hashtag, return don't find message" do
       response = InterpretService.call('search_by_hashtag', {"query": ''})
-      expect(response).to match("Nada encontrado")
+      expect(response).to match("Nothing found")
     end
 
     it "With valid hashtag, find question and answer in response" do

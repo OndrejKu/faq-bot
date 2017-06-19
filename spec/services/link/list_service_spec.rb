@@ -7,14 +7,14 @@ describe LinkModule::ListService do
 
   describe '#call' do
     it "with list command: With zero links, return don't find message" do
-      @listService = LinkModule::ListService.new({}, 'list')
+      @listService = LinkModule::ListService.new({}, 'link_list')
 
       response = @listService.call()
       expect(response).to match("Nothing found")
     end
 
     it "With two faqs, find url and description in response" do
-      @listService = LinkModule::ListService.new({}, 'list')
+      @listService = LinkModule::ListService.new({}, 'link_list')
 
       link1 = create(:link, company: @company)
       link2 = create(:link, company: @company)
@@ -29,7 +29,7 @@ describe LinkModule::ListService do
     end
 
     it "with search command: With empty query, return don't find message" do
-      @listService = LinkModule::ListService.new({'query' => ''}, 'search')
+      @listService = LinkModule::ListService.new({'query' => ''}, 'link_search')
 
       response = @listService.call
       expect(response).to match("Nothing found")
@@ -38,7 +38,7 @@ describe LinkModule::ListService do
     it "with search command: With valid query, find url and description in response" do
       link = create(:link, company: @company)
 
-      @listService = LinkModule::ListService.new({'query' => link.description.split(" ").sample}, 'search')
+      @listService = LinkModule::ListService.new({'query' => link.description.split(" ").sample}, 'link_search')
 
       response = @listService.call
 
@@ -47,7 +47,7 @@ describe LinkModule::ListService do
     end
 
     it "with search_by_hashtag command: With invalid hashtag, return don't find message" do
-      @listService = LinkModule::ListService.new({'query' => ''}, 'search_by_hashtag')
+      @listService = LinkModule::ListService.new({'query' => ''}, 'link_search_by_hashtag')
 
       response = @listService.call
       expect(response).to match("Nothing found")
@@ -58,7 +58,7 @@ describe LinkModule::ListService do
       hashtag = create(:hashtag, company: @company)
       create(:link_hashtag, link: link, hashtag: hashtag)
 
-      @listService = LinkModule::ListService.new({'query' => hashtag.name}, 'search_by_hashtag')
+      @listService = LinkModule::ListService.new({'query' => hashtag.name}, 'link_search_by_hashtag')
 
       response = @listService.call
 
