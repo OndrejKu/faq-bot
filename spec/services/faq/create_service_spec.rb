@@ -11,21 +11,21 @@ describe FaqModule::CreateService do
 
   describe '#call' do
     it "Without hashtag params, will receive a error" do
-      @createService = FaqModule::CreateService.new({"question.original" => @question, "answer.original" => @answer})
+      @createService = FaqModule::CreateService.new({"question-original" => @question, "answer-original" => @answer})
 
       response = @createService.call()
-      expect(response).to match("Hashtag Obrigatória")
+      expect(response).to match("Please fill out the hashtag")
     end
 
     it "With valid params, receive success message" do
-      @createService = FaqModule::CreateService.new({"question.original" => @question, "answer.original" => @answer, "hashtags.original" => @hashtags})
+      @createService = FaqModule::CreateService.new({"question-original" => @question, "answer-original" => @answer, "hashtags-original" => @hashtags})
 
       response = @createService.call()
-      expect(response).to match("Criado com sucesso")
+      expect(response).to match("Created with success")
     end
 
     it "With valid params, find question and anwser in database" do
-      @createService = FaqModule::CreateService.new({"question.original" => @question, "answer.original" => @answer, "hashtags.original" => @hashtags})
+      @createService = FaqModule::CreateService.new({"question-original" => @question, "answer-original" => @answer, "hashtags-original" => @hashtags})
 
       response = @createService.call()
       expect(Faq.last.question).to match(@question)
@@ -33,7 +33,7 @@ describe FaqModule::CreateService do
     end
 
     it "With valid params, hashtags are created" do
-      @createService = FaqModule::CreateService.new({"question.original" => @question, "answer.original" => @answer, "hashtags.original" => @hashtags})
+      @createService = FaqModule::CreateService.new({"question-original" => @question, "answer-original" => @answer, "hashtags-original" => @hashtags})
 
       response = @createService.call()
       expect(@hashtags.split(/[\s,]+/).first).to match(Hashtag.first.name)
