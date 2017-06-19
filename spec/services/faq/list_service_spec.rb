@@ -10,7 +10,7 @@ describe FaqModule::CreateService do
       @listService = FaqModule::ListService.new({}, 'list')
 
       response = @listService.call()
-      expect(response).to match("Nada encontrado")
+      expect(response).to match("Nothing found")
     end
 
     it "With two faqs, find questions and answer in response" do
@@ -32,7 +32,7 @@ describe FaqModule::CreateService do
       @listService = FaqModule::ListService.new({'query' => ''}, 'search')
 
       response = @listService.call()
-      expect(response).to match("Nada encontrado")
+      expect(response).to match("Nothing found")
     end
 
     it "with search command: With valid query, find question and answer in response" do
@@ -50,7 +50,7 @@ describe FaqModule::CreateService do
       @listService = FaqModule::ListService.new({'query' => ''}, 'search_by_hashtag')
 
       response = @listService.call()
-      expect(response).to match("Nada encontrado")
+      expect(response).to match("Nothing found")
     end
 
     it "with search_by_hashtag command: With valid hashtag, find question and answer in response" do
