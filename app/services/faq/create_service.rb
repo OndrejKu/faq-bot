@@ -10,7 +10,7 @@ module FaqModule
 
     def call
       if @hashtags == nil || @hashtags == ""
-        return "Hashtag Obrigatória"
+        return "Please fill out the hashtag"
       end
 
       begin
@@ -20,9 +20,9 @@ module FaqModule
             faq.hashtags << Hashtag.create(name: hashtag)
           end
         end
-        "Criado com sucesso"
+        "Done with success"
       rescue
-        "Problemas na criação"
+        "Problemas found during the creation"
       end
     end
   end
